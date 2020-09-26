@@ -8,12 +8,12 @@
 在安裝docker後使用
 首先建立一個裝置網頁的資料夾
 (強烈建議資料夾名稱為public)
-如 ``` C:\Web\public ```
+如 ``` C:\public ```
 
 開啟命令提示字元(cmd)或其他shell
 以docker指令進行建置
 ``` 
-docker run --name=Web -it -p 80:80 -v C:\Web\public:/var/www/public q123717111/lnmp-redis
+docker run --name=Web -it -p 80:80 -v C:\public:/var/www/public q123717111/lnmp-redis
 ```
 ### 3.放入網頁
 將HTML或PHP網站放入public資料夾
@@ -34,12 +34,6 @@ server-start
 http://127.0.0.1/
 ```
 直接查看你剛放入的網頁。
-<p>
-redis的啟動請輸入
-
-```
-service redis-server start
-```
 
 ### 5.管理資料庫
 
@@ -53,20 +47,7 @@ root密碼:root
 
 如果想簡單的管理資料庫
 內含phpmyadmin
-不過要啟動請先登入容器
-
-```
-docker exec -it Web /bin/bash
-``` 
-
-然後輸入
-
-```
-ln -s /usr/share/phpmyadmin /var/www/public
-``` 
-
-建立軟連結
-之後就能在瀏覽器的
+能在瀏覽器的輸入
 
 ```
 http://127.0.0.1/phpmyadmin
@@ -79,12 +60,24 @@ http://127.0.0.1/phpmyadmin
 ```
 docker exec -it Web /bin/bash
 ``` 
-然後輸入重啟啟伺服器的指令
+然後輸入重啟伺服器的指令
 ```
 server-restart
 ``` 
 
-### 7.構成
+### 7.關閉伺服器
+
+登入容器
+```
+docker exec -it Web /bin/bash
+``` 
+然後輸入關閉啟伺服器的指令
+
+```
+server-stop
+``` 
+
+### 8.構成
 1. ubuntu:
 linux發行版之一
 2. mysql:
@@ -98,3 +91,13 @@ linux發行版之一
 用加速網頁回應或增加伺服器附載量
 6. phpmyadmin
 用親切的網頁形式管理資料庫的GUI網頁應用
+
+### 9.用Dockerfile建置
+將所有的檔案一併放入同一個資料夾中
+用命令提示字元(cmd)或其他shell
+cd切換到此資料夾目錄下
+輸入指令
+
+```
+docker build .
+```

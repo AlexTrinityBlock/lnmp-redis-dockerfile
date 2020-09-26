@@ -3,3 +3,8 @@ service mysql start
 service nginx start
 service php7.4-fpm start
 service redis-server start
+#如果軟連結不存在則建立軟連結
+echo "連結phpmyadmin"
+ln -s /usr/share/phpmyadmin /var/www/public
+echo "服務啟動狀態"
+service --status-all

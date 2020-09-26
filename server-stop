@@ -1,8 +1,8 @@
 #!/bin/bash
-service mysql restart
-service nginx restart
-service php7.4-fpm restart
-service redis-server start
+service mysql stop
+service nginx stop
+service php7.4-fpm stop
+service redis-server stop
 #如果軟連結不存在則建立軟連結
 echo "連結phpmyadmin"
 ln -s /usr/share/phpmyadmin /var/www/public
