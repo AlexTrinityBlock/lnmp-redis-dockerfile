@@ -93,6 +93,9 @@ linux發行版之一
 用親切的網頁形式管理資料庫的GUI網頁應用
 
 ### 9.用Dockerfile建置
+
+[下載Dockerfile](https://github.com/AlexTrinityBlock/lnmp-redis-dockerfile/archive/master.zip )
+
 將所有的檔案一併放入同一個資料夾中
 用命令提示字元(cmd)或其他shell
 cd切換到此資料夾目錄下
