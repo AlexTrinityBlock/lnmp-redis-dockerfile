@@ -8,11 +8,12 @@ FROM ubuntu
 
 WORKDIR /
 
+#導入phpmyadmin安裝腳本
+ADD install-phpmyadmin /tmp
+
 #更新apt,安裝nginx,安裝php,安裝redis,安裝mysql
 RUN echo "\n\n 更新apt \n\n";\
     apt-get update -y ;\
-    echo "\n\n 安裝例外處理 \n\n";\
-    apt-get install -y expect ;\
     echo "\n\n 安裝nginx \n\n";\
     apt-get install nginx -y; \
     echo "\n\n 安裝php \n\n";\
@@ -25,16 +26,10 @@ RUN echo "\n\n 更新apt \n\n";\
     apt-get install vim -y ;\
     echo "\n\n 安裝php-mbstring \n\n";\
     apt-get install php-mbstring  -y; \
-    echo "\n\n 建立phpmyadmin安裝腳本 \n\n";\
-    echo '#!/usr/bin/expect -f' > install-phpmyadmin.sh; \
-    echo "spawn apt-get install -y phpmyadmin" >> install-phpmyadmin.sh; \
-	echo "expect \"Configure database for phpmyadmin with dbconfig-common?\"" >> install-phpmyadmin.sh; \
-	echo "send \"n\r\"" >> install-phpmyadmin.sh; \
-    chmod +x install-phpmyadmin.sh;\
     echo "\n\n 啟動phpmyadmin安裝腳本 \n\n";\
-    ./install-phpmyadmin.sh;\
+    /tmp/install-phpmyadmin;\
     echo "\n\n 刪除phpmyadmin安裝腳本 \n\n";\
-    rm install-phpmyadmin.sh;\
+    rm /tmp/install-phpmyadmin;\
     echo "\n\n 建立網頁資料夾 \n\n";\
     mkdir /var/www/public;\
     echo "\n\n 建立自訂腳本資料夾 \n\n";\
