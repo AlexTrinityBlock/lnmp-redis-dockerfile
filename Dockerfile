@@ -56,4 +56,6 @@ ENV PATH=$PATH:/var/shellscript
 #server-start
 #重新啟動伺服器指令
 #server-restart
+#停止伺服器指令
+#server-stop
 
