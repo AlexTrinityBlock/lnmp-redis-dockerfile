@@ -38,11 +38,11 @@ http://127.0.0.1/
 ### 5.管理資料庫
 
 資料庫為mysql
-請盡快修改預設密碼以策安全
+請輸入指令查看預設的使用者帳號密碼
+預設帳號可能為debian-sys-maint
 
 ```
-root帳號:root
-root密碼:root
+cat /etc/mysql/debian.cnf
 ```
 
 如果想簡單的管理資料庫
