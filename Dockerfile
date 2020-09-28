@@ -43,7 +43,9 @@ ADD server-restart /var/shellscript
 ADD server-start /var/shellscript
 ADD server-stop /var/shellscript
 #將nginx設定覆蓋
-ADD default /etc/nginx/sites-enabled/default 
+ADD default /etc/nginx/sites-enabled/default
+#codeIgniter 安裝支援
+ADD codeIgniter-installer /var/shellscript
 #環境變數
 ENV PATH=$PATH:/var/shellscript
 
