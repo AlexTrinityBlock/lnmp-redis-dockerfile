@@ -37,7 +37,7 @@ server {
         }
 }">nginx.conf;
 ######
-cp nginx.conf /etc/nginx/sites-enabled/nginx.conf
+mv nginx.conf /etc/nginx/sites-enabled/nginx.conf
 nginx -t
 service nginx restart
 clear
