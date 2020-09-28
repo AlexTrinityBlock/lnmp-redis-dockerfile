@@ -50,4 +50,38 @@ cd /web
 composer install
 clear
 
+echo " 重寫伺服器啟動規則... "
+echo "
+#!/bin/bash
+service mysql start
+service nginx start
+service php7.4-fpm start
+service redis-server start
+echo "服務啟動狀態"
+service --status-all
+">/var/shellscript/server-start
+
+echo "
+#!/bin/bash
+service mysql restart
+service nginx restart
+service php7.4-fpm restart
+service redis-server restart
+echo "服務啟動狀態"
+service --status-all
+">/var/shellscript/server-restart
+
+echo "
+#!/bin/bash
+service mysql stop
+service nginx stop
+service php7.4-fpm stop
+service redis-server stop
+echo "服務啟動狀態"
+service --status-all
+">/var/shellscript/server-stop
+
 echo " codeigniter4 安裝完畢 "
+echo "======================="
+echo "建議:若要使用phpmyadmin，請自行添加導向phpmyadmin之路由"
+echo "======================="
