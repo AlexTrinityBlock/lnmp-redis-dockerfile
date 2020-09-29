@@ -28,6 +28,7 @@ server {
         }
 
         location / {
+                try_files \$uri \$uri/ /index.php;
         }
 
         location ~* \.php$ {
@@ -79,6 +80,9 @@ service redis-server stop
 echo "服務啟動狀態"
 service --status-all
 ">/var/shellscript/server-stop
+
+service nginx restart
+service nginx restart
 
 echo " codeigniter4 安裝完畢 "
 echo "======================="
