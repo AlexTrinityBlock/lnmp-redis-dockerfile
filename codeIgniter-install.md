@@ -1,7 +1,7 @@
 # 如何安裝 CodeIgniter ?
 ---
 
-![image](https://i.imgur.com/VM5RM9O.png)
+![image](https://i.imgur.com/KYXbuVf.png)
 
 ## 1.建立www資料夾
 
