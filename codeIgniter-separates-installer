@@ -1,0 +1,140 @@
+#!/bin/bash
+echo "  正在配置PHP... "
+sed -i -e 's/;extension=intl/extension=intl/i' /etc/php/7.4/fpm/php.ini
+sed -i -e 's/;extension=intl/extension=intl/i' /etc/php/7.4/cli/php.ini
+apt-get install php7.4-intl
+service nginx restart
+service php7.4-fpm restart
+clear
+
+echo "  安裝dos2unix... "
+apt-get install dos2unix
+clear
+
+echo "   正在配置composer...  "
+php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');"
+php -r "if (hash_file('sha384', 'composer-setup.php') === '795f976fe0ebd8b75f26a6dd68f78fd3453ce79f32ecb33e7fd087d39bfeb978342fb73ac986cd4f54edd0dc902601dc') { echo 'Installer verified'; } else { echo 'Installer corrupt'; unlink('composer-setup.php'); } echo PHP_EOL;"
+php composer-setup.php
+php -r "unlink('composer-setup.php');"
+mv composer.phar /usr/local/bin/composer
+clear
+
+echo " 正在配置nginx組態... "
+echo "
+server {
+        #後端伺服器 
+        root /var/www/api/public;
+        index  index.php;
+        listen       8080;
+        # set expiration of assets to MAX for caching
+        location ~* \.(ico|css|js|gif|jpe?g|png)(\?[0-9]+)?$ {
+                expires max;
+                log_not_found off;
+        }
+        location / {
+                try_files \$uri \$uri/ /index.php;
+        }
+        location ~* \.php$ {
+                fastcgi_pass unix:/run/php/php7.4-fpm.sock;
+                include fastcgi.conf;
+        }
+        add_header Access-Control-Allow-Origin *;
+        add_header Access-Control-Max-Age 3600;
+        add_header Access-Control-Expose-Headers Content-Length;
+        add_header Access-Control-Allow-Headers Range;
+}
+server { 
+        #phpmyadmin服務
+        root /usr/share/phpmyadmin;
+        index  index.php;
+        listen       8088;
+        # set expiration of assets to MAX for caching
+        location ~* \.(ico|css|js|gif|jpe?g|png)(\?[0-9]+)?$ {
+                expires max;
+                log_not_found off;
+        }
+        location / {
+                try_files \$uri \$uri/ /index.php;
+        }
+        location ~* \.php$ {
+                fastcgi_pass unix:/run/php/php7.4-fpm.sock;
+                include fastcgi.conf;
+        }
+}
+server { 
+        #前端伺服器
+        root /var/www/web;
+        index index.html ;
+        listen       80;
+        # set expiration of assets to MAX for caching
+        location ~* \.(ico|css|js|gif|jpe?g|png)(\?[0-9]+)?$ {
+                expires max;
+                log_not_found off;
+        }
+        location / {
+                
+        }
+        location /api {
+                proxy_pass http://127.0.0.1:8080/index.php;
+        }
+}
+">nginx.conf;
+######
+mv nginx.conf /etc/nginx/sites-enabled/nginx.conf
+nginx -t
+service nginx restart
+clear
+
+echo " 正在安裝codeigniter4... "
+cd /var/www
+composer create-project codeigniter4/appstarter api
+rm /etc/nginx/sites-enabled/default
+cd /api
+composer install
+clear
+
+echo " 建置前端目錄... "
+mkdir /var/www/web
+cd /var/www/web
+echo "Test">index.html;
+clear
+
+echo " 重寫伺服器啟動規則... "
+echo "
+#!/bin/bash
+service mysql start
+service nginx start
+service php7.4-fpm start
+service redis-server start
+echo "服務啟動狀態"
+service --status-all
+">/var/shellscript/server-start
+
+echo "
+#!/bin/bash
+service mysql restart
+service nginx restart
+service php7.4-fpm restart
+service redis-server restart
+echo "服務啟動狀態"
+service --status-all
+">/var/shellscript/server-restart
+
+echo "
+#!/bin/bash
+service mysql stop
+service nginx stop
+service php7.4-fpm stop
+service redis-server stop
+echo "服務啟動狀態"
+service --status-all
+">/var/shellscript/server-stop
+
+service nginx restart
+service nginx restart
+clear
+
+echo " 安裝node.js，為了npm前端套件 "
+apt-get install -y nodejs
+clear
+
