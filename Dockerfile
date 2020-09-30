@@ -42,6 +42,7 @@ RUN echo "\n\n 更新apt \n\n";\
 ADD server-restart /var/shellscript
 ADD server-start /var/shellscript
 ADD server-stop /var/shellscript
+ADD default-mysql-password /var/shellscript
 #將nginx設定覆蓋
 ADD default /etc/nginx/sites-enabled/default
 #codeIgniter 安裝支援

@@ -41,10 +41,9 @@ http://127.0.0.1/
 
 資料庫為mysql
 請輸入指令查看預設的使用者帳號密碼
-預設帳號可能為debian-sys-maint
 
 ```
-cat /etc/mysql/debian.cnf
+default-mysql-password
 ```
 
 如果想簡單的管理資料庫
@@ -115,3 +114,4 @@ docker build .
 主流的商用或民間網站PHP開源免費框架之一	
 在此提供非常簡單建置的方式<br>	
 [CodeIgniter快速簡單建置](https://github.com/AlexTrinityBlock/lnmp-redis-dockerfile/blob/master/codeIgniter-install.md)
+[CodeIgniter前後端分離(測試性)](https://github.com/AlexTrinityBlock/lnmp-redis-dockerfile/blob/master/codeIgniter-separates-installer.md)
