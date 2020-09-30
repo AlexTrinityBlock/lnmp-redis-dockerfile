@@ -113,5 +113,5 @@ docker build .
 #### CodeIgniter	CodeIgniter
 主流的商用或民間網站PHP開源免費框架之一	
 在此提供非常簡單建置的方式<br>	
-[CodeIgniter快速簡單建置](https://github.com/AlexTrinityBlock/lnmp-redis-dockerfile/blob/master/codeIgniter-install.md)
+[CodeIgniter快速簡單建置](https://github.com/AlexTrinityBlock/lnmp-redis-dockerfile/blob/master/codeIgniter-install.md) <br>
 [CodeIgniter前後端分離(測試性)](https://github.com/AlexTrinityBlock/lnmp-redis-dockerfile/blob/master/codeIgniter-separates-installer.md)
