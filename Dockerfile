@@ -47,6 +47,7 @@ ADD default-mysql-password /var/shellscript
 ADD default /etc/nginx/sites-enabled/default
 #codeIgniter 安裝支援
 ADD codeIgniter-installer /var/shellscript
+ADD codeIgniter-separates-installer /var/shellscript
 #環境變數
 ENV PATH=$PATH:/var/shellscript
 
