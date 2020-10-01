@@ -38,7 +38,8 @@ RUN echo "\n\n 更新apt \n\n";\
     mkdir /var/shellscript; \
     echo "\n\n 刪除nginx舊設定檔 \n\n";\
     rm /etc/nginx/sites-enabled/default  ;\
-    chmod 700 -R /var/shellscript
+    chmod 700 -R /var/shellscript; \
+    apt-get install dos2unix;
 
 
 #將目錄裡的啟動伺服器腳本加入容器
@@ -53,6 +54,8 @@ ADD codeIgniter-installer /var/shellscript
 ADD codeIgniter-separates-installer /var/shellscript
 #環境變數
 ENV PATH=$PATH:/var/shellscript
+
+RUN dos2unix /var/shellscript/*
 
 #啟動伺服器指令
 #server-start
