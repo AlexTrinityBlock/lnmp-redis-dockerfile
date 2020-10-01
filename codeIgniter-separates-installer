@@ -137,4 +137,8 @@ service nginx restart
 echo " 安裝node.js，為了npm前端套件 "
 apt-get install -y nodejs
 
+echo " 調整權限配置 "
+chmod 755 -R /var/www/api/
+chmod 777 -R /var/www/api/writable/
+
 

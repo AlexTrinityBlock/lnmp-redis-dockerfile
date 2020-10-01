@@ -84,6 +84,10 @@ service --status-all
 service nginx restart
 service nginx restart
 
+echo " 調整權限配置 "
+chmod 755 -R /var/www/api/
+chmod 777 -R /var/www/api/writable/
+
 echo " codeigniter4 安裝完畢 "
 echo "======================="
 echo "建議:若要使用phpmyadmin，請自行添加導向phpmyadmin之路由"
