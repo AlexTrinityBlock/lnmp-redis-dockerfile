@@ -89,7 +89,7 @@ echo " 正在安裝codeigniter4... "
 cd /var/www
 composer create-project codeigniter4/appstarter api
 rm /etc/nginx/sites-enabled/default
-cd /api
+cd /var/www/api
 composer install
 
 
