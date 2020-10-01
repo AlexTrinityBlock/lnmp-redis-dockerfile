@@ -35,7 +35,8 @@ RUN echo "\n\n 更新apt \n\n";\
     echo "\n\n 建立自訂腳本資料夾 \n\n";\
     mkdir /var/shellscript; \
     echo "\n\n 刪除nginx舊設定檔 \n\n";\
-    rm /etc/nginx/sites-enabled/default  ;
+    rm /etc/nginx/sites-enabled/default  ;\
+    chmod 700 -R /var/shellscript
 
 
 #將目錄裡的啟動伺服器腳本加入容器
