@@ -10,9 +10,6 @@ WORKDIR /
 
 USER root
 
-#導入phpmyadmin安裝腳本
-ADD install-phpmyadmin /tmp
-
 #更新apt,安裝nginx,安裝php,安裝redis,安裝mysql
 RUN echo "\n\n 更新apt \n\n";\
     apt-get update -y ;\
@@ -29,9 +26,7 @@ RUN echo "\n\n 更新apt \n\n";\
     echo "\n\n 安裝php-mbstring \n\n";\
     apt-get install php-mbstring  -y; \
     echo "\n\n 啟動phpmyadmin安裝腳本 \n\n";\
-    /tmp/install-phpmyadmin;\
-    echo "\n\n 刪除phpmyadmin安裝腳本 \n\n";\
-    rm /tmp/install-phpmyadmin;\
+    DEBIAN_FRONTEND=noninteractive apt-get -yq install phpmyadmin ;\
     echo "\n\n 建立網頁資料夾 \n\n";\
     mkdir /var/www/public;\
     echo "\n\n 建立自訂腳本資料夾 \n\n";\
