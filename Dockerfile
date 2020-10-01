@@ -8,6 +8,8 @@ FROM ubuntu
 
 WORKDIR /
 
+USER root
+
 #導入phpmyadmin安裝腳本
 ADD install-phpmyadmin /tmp
 
