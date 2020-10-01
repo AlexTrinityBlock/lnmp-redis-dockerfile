@@ -5,11 +5,11 @@ sed -i -e 's/;extension=intl/extension=intl/i' /etc/php/7.4/cli/php.ini
 apt-get install php7.4-intl
 service nginx restart
 service php7.4-fpm restart
-clear
+
 
 echo "  安裝dos2unix... "
 apt-get install dos2unix
-clear
+
 
 echo "   正在配置composer...  "
 php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');"
@@ -17,7 +17,7 @@ php -r "if (hash_file('sha384', 'composer-setup.php') === '795f976fe0ebd8b75f26a
 php composer-setup.php
 php -r "unlink('composer-setup.php');"
 mv composer.phar /usr/local/bin/composer
-clear
+
 
 echo " 正在配置nginx組態... "
 echo "
@@ -83,7 +83,7 @@ server {
 mv nginx.conf /etc/nginx/sites-enabled/nginx.conf
 nginx -t
 service nginx restart
-clear
+
 
 echo " 正在安裝codeigniter4... "
 cd /var/www
@@ -91,13 +91,13 @@ composer create-project codeigniter4/appstarter api
 rm /etc/nginx/sites-enabled/default
 cd /api
 composer install
-clear
+
 
 echo " 建置前端目錄... "
 mkdir /var/www/web
 cd /var/www/web
 echo "Test">index.html;
-clear
+
 
 echo " 重寫伺服器啟動規則... "
 echo "
@@ -132,9 +132,9 @@ service --status-all
 
 service nginx restart
 service nginx restart
-clear
+
 
 echo " 安裝node.js，為了npm前端套件 "
 apt-get install -y nodejs
-clear
+
 
