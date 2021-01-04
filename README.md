@@ -2,7 +2,7 @@
 
 ![image](https://i.imgur.com/VM5RM9O.png)
 
-提供者:Alex蕭
+提供者:蕭維均
 ### 1.說明
 只要將PHP和HTML放入public資料夾
 就能輕易運作的網頁伺服器
